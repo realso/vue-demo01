@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from "@/store"
 //设置axios为form-data
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -17,7 +18,10 @@ const getUrl = function (type) {
       url = getURL("url") + "/upload/file.aspx?appId=2";
       break;
     case "url":
-      url = "http://ydzl.gujing.net:9090/gj-app-3/data2.aspx?appId=2";
+      url = "http://218.22.251.156/gj-app-4/data2.aspx?appId=2";
+      if(store.state.user.userInfo.sessionID){
+        url+="&sessionID="+store.state.user.userInfo.sessionID;
+      }
       break;
     case "socket":
       url = "ws://ydzl.gujing.net:9091";
@@ -39,7 +43,13 @@ const postData = function (param) {
     }
   )
 }
+
+const open = function(param){
+  param["tp"]="query1";
+  return postData(param);
+}
 export default {
   getUrl,
-  postData
+  postData,
+  open
 }

@@ -1,20 +1,19 @@
 <template>
     <div class="page-loadmore">
-    <rs-header title="反馈">
-         <router-link slot="right" tag="a" to="/feedback/add">新增</router-link>
+    <rs-header title="EMPCODE">
     </rs-header>
     <div class="view">
         <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
 		<div style="margin-right: 52px;">
 		<input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
 		</div>
-		<input type="button"  class="mui-pull-right border-none" @click="doQuery" value="查询">
+		<input type="button"  baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
 	</div>
     <div class="page-loadmore-wrapper">
-    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  :top-status.sync="topStatus" ref="loadmore">
+    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded"  :top-status.sync="topStatus" ref="loadmore">
     <ul>
-        <li class="item" v-for="item in list" :key="item.id" @click="moveTo(item.DEPTNAME)" v-hold="hold">
-           {{item.DEPTCODE}}{{item["FULLDEPTNAME"]}}
+        <li class="item" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
+           {{item.EMPCODE}}{{item["EMPNAME"]}}
         </li>
     </ul>
     </mt-loadmore>   
@@ -25,7 +24,10 @@
 <script>
 import db from "@/api/db";
 export default {
-  name: "list",
+  name: "emp_sel",
+  props: {
+    refStore:{type:Object}
+   },
   data() {
     return {
       list: [],
@@ -44,9 +46,9 @@ export default {
     doQuery: function() {
       this.topStatus = "loading";
       db.open({
-        modalName: "TBS_DEPT",
-        where: "[DEPTNAME] LIKE '%" + this.searchInput + "%'",
-        orderBy:"[RULECODE]",
+        modalName: "TBS_EMP",
+        where: "[EMPNAME] LIKE '%" + this.searchInput + "%'",
+        orderBy:"[EMPCODE]",
         pageSize: 15,
         pageIndex: 1
       }).then(data => {
@@ -55,8 +57,12 @@ export default {
         this.$refs.loadmore.onTopLoaded();
       });
     },
-    moveTo:function(id){
-      alert(id);
+    selectEmp:function(item){
+      let para={};
+      para["path"]=this.refStore.path;
+      para["item"] = item;
+      this.$store.commit(this.refStore.mutation,para);
+      this.$router.go(-1);
     },
     hold:function(){
       alert("长按")

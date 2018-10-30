@@ -45,7 +45,7 @@ export default {
         })
         .then(res => {
           if (_this.$store.getters["user/isLogin"]) {
-            _this.$router.push("/main");
+            _this.$router.push("/");
           }
         });
     },

@@ -1,0 +1,46 @@
+<template>
+  <div>
+     <component v-show="showView==view.name"  
+     v-for="view in views" 
+     :is="view.type" 
+     :key="view.name" 
+     :ref="view.name"
+     :ref-store="view.refStore" 
+     :TITLE="view.TITLE"
+     ></component>
+  </div>
+</template>
+<script>
+import store from "./store";
+import feedbackAddMain from "./views/main";
+import empSel from "@/pages/com/views/emp_sel";
+export default {
+  data() {
+    return {
+      showView:"main",
+      views: [
+        { type: "feedback-add-main", name: "main",TITLE:'反馈'},
+        { type: "emp-sel", name: "empsel",refStore:{mutation:"feedback-add/setEmp",path:"main"}},
+        { type: "emp-sel", name: "dtsempsel",refStore:{mutation:"feedback-add/addEmp",path:"dts"}}
+      ]
+    };
+  },
+  components: {
+    "feedback-add-main": feedbackAddMain,
+    "emp-sel": empSel
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm=>{
+        vm.showView = to.params["view"]||'main';
+    });
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.showView =  to.params["view"]||'main';
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    next();
+  }
+};
+</script>
+
