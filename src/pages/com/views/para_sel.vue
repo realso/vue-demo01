@@ -1,6 +1,6 @@
 <template>
     <div class="page-loadmore">
-    <rs-header title="EMPCODE">
+    <rs-header :title="TITLE">
     </rs-header>
     <div class="view">
         <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
@@ -24,9 +24,11 @@
 <script>
 import db from "@/api/db";
 export default {
-  name: "emp_sel",
+  name: "para_sel",
   props: {
-    refStore: { type: Object }
+    refStore: {type: Object},
+    TITLE:{ type: string },
+    opara:{type: Object}
   },
   data() {
     return {
@@ -47,7 +49,7 @@ export default {
     doQuery: function() {
       this.topStatus = "loading";
       db.open({
-        modalName: "TBS_EMP",
+        modalName: "TBS_PARAMETER",
         where: "[EMPNAME] LIKE '%" + this.searchInput + "%'",
         orderBy: "[EMPCODE]",
         pageSize: 15,

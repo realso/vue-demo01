@@ -1,28 +1,34 @@
 <template>
     <div class="page-loadmore">
     <mt-header :title="TITLE">
+        <a slot="right" @click="save">保存</a>
     </mt-header>
     <ul class="mui-table-view">
         <li class="mui-table-view-cell">
-            <a class="mui-navigate-right" @click="linkUrl('empsel')">
-                发起人：{{this["EMPID.EMPNAME"]}}
+            <a v-if="BILLCODE!=''" class="mui-navigate-right" @click="linkUrl('empsel')">
+                {{BILLCODE}}
             </a>
         </li>
-        <li v-if="ISSHOWWD" class="mui-table-view-cell">
-            <a class="mui-navigate-right">
-                网点：
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right" @click="linkUrl('empsel')">
+                发起人：{{this["MKEMPID.EMPNAME"]}}
             </a>
         </li>
         <li class="mui-table-view-cell">
             <a class="mui-navigate-right">
-                类别：{{REMARK}}
+                网点：{{this["SNODEID.SNODENAME"]}}
+            </a>
+        </li>
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                类别：{{CONTENT}}
             </a>
         </li>
         <li class="mui-table-view-cell">
             <a class="mui-navigate-right">
                 说明
             </a>
-            <input v-model="REMARK"/>
+            <input v-model="CONTENT"/>
         </li>
     </ul>
     <ul>
@@ -47,7 +53,7 @@ export default {
     };
   },
   computed: {
-      ...mapGetters("main",['EMPID','EMPID.EMPCODE','EMPID.EMPNAME',"REMARK"]),
+      ...mapGetters("main",['BILLCODE','MKEMPID.EMPNAME',"SNODEID.SNODENAME","CONTENT"]),
       ...mapGetters("dts",[]),
       ISSHOWWD:function(){
           return this["EMPID"]!="";
@@ -55,10 +61,13 @@ export default {
   },
   methods: {
     linkUrl: function(url) {
-      this.$router.push("/feedback/add/"+url);
+      this.$router.push({path:"/feedback/add/"+url,query:{EMPIDX:this.dts.map(function(v){return v["EMPID"]})}});
     },
     delEmp:function(index){
       this.$store.commit("feedback-add/delEmp",{index});
+    },
+    save:function(){
+       this.$store.dispatch("feedback-add/save");
     }
   }
 };

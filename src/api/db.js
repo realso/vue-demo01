@@ -46,10 +46,25 @@ const postData = function (param) {
 
 const open = function(param){
   param["tp"]="query1";
+  if(param["sqlId"]){
+    param["tp"] = "query5";
+    param["json"] =encodeURIComponent(JSON.stringify({params:params}));
+  }
   return postData(param);
 }
+
+const call = function(para){
+  let param = {
+    tp: "call",
+    json: encodeURIComponent(JSON.stringify({para: para }))
+  };  
+  return postData(param);
+};
+  
+
 export default {
   getUrl,
   postData,
-  open
+  open,
+  call
 }

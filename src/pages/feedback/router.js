@@ -2,16 +2,11 @@ export default {
   path: '/feedback',
   name: 'feedback',
   component: r => require.ensure([], () => r(require('@/pages/feedback/index')), "feedback"),
-  redirect: 'feedback/list',
+  redirect: 'feedback/list/main',
   children: [{
-      path: '/feedback/list',
+      path: '/feedback/list/:view',
       name: "list",
-      component: r => require.ensure([], () => r(require('@/pages/feedback/views/list')), "feedback")
-    },
-    {
-      path: '/feedback/detail',
-      name: "detail",
-      component: r => require.ensure([], () => r(require('@/pages/feedback/views/detail')), "feedback")
+      component: r => require.ensure([], () => r(require('@/pages/feedback/list/index')), "feedback")
     },
     {
       path: '/feedback/add/:view',
