@@ -1,7 +1,7 @@
 <template>
   <div class="page-loadmore">
     <rs-header :title="TITLE">
-      <router-link slot="right" tag="a" to="/feedback/add/main?ACTION=ADD">新增</router-link>
+      <router-link slot="right" tag="a" to="/feedback.1/add/main?ACTION=ADD">新增</router-link>
     </rs-header>
     <div class="view">
       <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
@@ -115,7 +115,7 @@ export default {
       });
     },
     moveTo: function(id) {
-      this.$router.push({path:"/feedback/add/main",query:{ACTION:"VIEW",BILLID:id}});
+      this.$router.push({path:"/feedback.1/add/main",query:{ACTION:"VIEW",BILLID:id}});
     },
     hold: function() {
       alert("长按");

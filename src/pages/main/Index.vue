@@ -1,7 +1,9 @@
 <template>
   <div class="page">
     {{title2}}{{title}}
-    <router-view ref="view"/>
+    <keep-alive>
+      <router-view ref="view"/>
+    </keep-alive>
     <mt-tabbar v-model="selected">
     <mt-tab-item id="main1">
       <img slot="icon" >

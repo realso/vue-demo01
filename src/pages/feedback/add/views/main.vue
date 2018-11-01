@@ -28,7 +28,7 @@
             <a class="mui-navigate-right">
                 说明
             </a>
-            <input v-model="CONTENT"/>
+            <input v-model.lazy="CONTENT"/>
         </li>
     </ul>
     <ul>

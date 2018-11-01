@@ -4,6 +4,7 @@
     </rs-header>
     <div class="view">
         main.2
+        <input />
     </div>    
     </div>
 </template>

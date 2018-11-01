@@ -1,25 +1,25 @@
 <template>
-    <div class="page-loadmore">
+  <div class="page-loadmore">
     <rs-header title="EMPCODE">
     </rs-header>
     <div class="view">
-        <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
-		<div style="margin-right: 52px;">
-		<input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
-		</div>
-		<input type="button"  baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
-	</div>
-    <div class="page-loadmore-wrapper">
-    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded"  :top-status.sync="topStatus" ref="loadmore">
-    <ul>
-        <li class="item" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
-           {{item.EMPCODE}}{{item["EMPNAME"]}}
-        </li>
-    </ul>
-    </mt-loadmore>   
+      <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
+        <div style="margin-right: 52px;">
+          <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
+        </div>
+        <input type="button" baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
+      </div>
+      <div class="page-loadmore-wrapper">
+        <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
+          <ul>
+            <li class="item" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
+              {{item.EMPCODE}}{{item["EMPNAME"]}}
+            </li>
+          </ul>
+        </mt-loadmore>
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
 </template>
 <script>
 import db from "@/api/db";
@@ -34,7 +34,7 @@ export default {
       topStatus: "",
       allLoaded: false,
       searchInput: "",
-      query:{}
+      query: {}
     };
   },
   methods: {
@@ -67,16 +67,19 @@ export default {
     },
     hold: function() {
       alert("长按");
+    },
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+        console.log("beforeRouteEnter:"+to.name);
+      });
+    },
+    beforeRouteUpdate(to, from, next) {
+       console.log("beforeRouteUpdate:"+to.name);
+      next();
+    },
+    afterEnter(){
+      debugger;
     }
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      vm.query = to.query;
-    });
-  },
-  beforeRouteUpdate(to, from, next) {
-    this.query = to.query;
-    next();
   }
 };
 </script>
