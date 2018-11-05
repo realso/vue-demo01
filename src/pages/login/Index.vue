@@ -1,23 +1,21 @@
 <template>
- <div id="login" selected="true"  class=" mui-content" style="background: #fff;">
-			<div class="login-logo">
-				<img src="../../assets/logo.png" alt="" />
-			</div>
-			<div class="form-group rs-text-center mt15">
-				  <input type="text"  class="input-line"
-                   v-model="form_email" 
-                   id="main.form_email" placeholder="用户名/手机号码" />
-			</div>
-			<div class="form-group rs-text-center mt15">
-				 <input type="password"  v-model="form_password"   placeholder="密码" class="input-line"/>
-         
-			</div>
-            <div class="rs-font rs-baifang chidden "></div>
-            <button @click="doLogin">登录</button>
-			<div class="login-jz rs-text-right">
-                 <input type="checkbox" class="login-checkbox" checked="true"/>记住密码
-      </div>
-</div>
+  <div id="login" selected="true" class=" mui-content" style="background: #fff;">
+    <div class="login-logo">
+      <img src="../../assets/logo.png" alt="" />
+    </div>
+    <div class="form-group rs-text-center mt15">
+      <input type="text" class="input-line" v-model="form_email" id="main.form_email" placeholder="用户名/手机号码" />
+    </div>
+    <div class="form-group rs-text-center mt15">
+      <input type="password" v-model="form_password" placeholder="密码" class="input-line" />
+
+    </div>
+    <div class="rs-font rs-baifang chidden "></div>
+    <button @click="doLogin">登录</button>
+    <div class="login-jz rs-text-right">
+      <input type="checkbox" class="login-checkbox" checked="true" />记住密码
+    </div>
+  </div>
 </template>
 
 <script>

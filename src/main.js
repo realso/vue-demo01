@@ -20,6 +20,8 @@ window.realsoApp = new Vue({
     render: h => h(App)
 })
 
+
+
 Vue.directive('hold', function(el, binding) {
     let timer = null;
     const start = function(e) {

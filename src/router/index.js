@@ -5,12 +5,14 @@ import LoginRouter from "@/pages/login/router"
 import MainRouter from "@/pages/main/router"
 import FeedbackRouter from "@/pages/feedback/router"
 import FeedbackRouter1 from "@/pages/feedback.1/router"
+import FeedbackRouter2 from "@/pages/feedback.2/router"
 Vue.use(Router);
 let routes = [];
 routes = routes.concat(LoginRouter);
 routes.push(FeedbackRouter);
-routes = routes.concat(FeedbackRouter1);
+//routes = routes.concat(FeedbackRouter1);
 routes.push(MainRouter);
+routes.push(FeedbackRouter2);
 const router = new Router({
     mode: 'history',
     routes: routes
@@ -28,4 +30,10 @@ router.beforeEach((to, from, next) => {
         });
     }
 });
+
+//返回
+Router.prototype.goBack = function() {　　
+    this.isBack = true;
+    this.go(-1)
+}
 export default router;

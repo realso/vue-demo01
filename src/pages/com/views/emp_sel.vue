@@ -1,7 +1,8 @@
 <template>
   <div class="page-loadmore">
-    <rs-header title="EMPCODE">
-    </rs-header>
+    <mt-header :title="TITLE">
+      <mt-button slot="left" icon="back" @click="$router.goBack()">返回</mt-button>
+    </mt-header>
     <div class="view">
       <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
         <div style="margin-right: 52px;">
@@ -26,7 +27,9 @@ import db from "@/api/db";
 export default {
   name: "emp_sel",
   props: {
-    refStore: { type: Object }
+    refStore: { type: Object },
+    singleOpen: { type: Boolean },
+    TITLE: { type: String }
   },
   data() {
     return {
@@ -46,9 +49,13 @@ export default {
     },
     doQuery: function() {
       this.topStatus = "loading";
+      let EMPIDX = this.$route.query.EMPIDX;
+      if(EMPIDX.length==0){
+        EMPIDX.push(-1);
+      }
       db.open({
         modalName: "TBS_EMP",
-        where: "[EMPNAME] LIKE '%" + this.searchInput + "%'",
+        where: "[EMPNAME] LIKE '%" + this.searchInput + "%' AND [EMPID] NOT IN("+EMPIDX+")",
         orderBy: "[EMPCODE]",
         pageSize: 15,
         pageIndex: 1
@@ -63,23 +70,15 @@ export default {
       para["path"] = this.refStore.path;
       para["item"] = item;
       this.$store.commit(this.refStore.mutation, para);
-      this.$router.go(-1);
+      this.$router.goBack();
     },
     hold: function() {
       alert("长按");
-    },
-    beforeRouteEnter(to, from, next) {
-      next(vm => {
-        console.log("beforeRouteEnter:"+to.name);
-      });
-    },
-    beforeRouteUpdate(to, from, next) {
-       console.log("beforeRouteUpdate:"+to.name);
-      next();
-    },
-    afterEnter(){
-      debugger;
     }
+  },
+  activated: function() {
+    console.log("%c" + this.$route.path, "color:red");
+    this.doQuery();
   }
 };
 </script>

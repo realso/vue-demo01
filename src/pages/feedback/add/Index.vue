@@ -2,7 +2,7 @@
   <div>
     <transition>
       <keep-alive>
-        <component v-if="showView==view.name" v-for="view in views" :is="view.type" :key="view.name" :ref="view.name" :ref-store="view.refStore" :TITLE="view.TITLE"></component>
+        <component v-if="$route.params.view==view.name" v-for="view in views" :is="view.type" :key="view.name" :ref="view.name" :ref-store="view.refStore" :TITLE="view.TITLE"></component>
       </keep-alive>
     </transition>
   </div>
@@ -33,18 +33,6 @@ export default {
   components: {
     "feedback-add-main": feedbackAddMain,
     "emp-sel": empSel
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      vm.showView = to.params["view"] || "main";
-    });
-  },
-  beforeRouteUpdate(to, from, next) {
-    this.showView = to.params["view"] || "main";
-    next();
-  },
-  beforeRouteLeave(to, from, next) {
-    next();
   },
   activated: function() {
     this.$store.commit("feedback-add/setParams", this.$route.query);
