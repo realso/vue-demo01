@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="rs-position-re ios7mt0">
-    	<img src="@/assets/banner-2.jpg" width="100%">
+    	<img src="@/assets/banner-2.jpg" style="width:100%">
     	<div class="rs-tips-index">
     		<div class="rs-tips-index1">
 	    		<div class="rs-tips-time"></div>

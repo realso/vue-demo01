@@ -1,27 +1,30 @@
 <template>
   <div class="page">
-    {{title2}}{{title}}
     <keep-alive>
-      <router-view ref="view"/>
+      <router-view ref="view" />
     </keep-alive>
-    <mt-tabbar v-model="selected">
-    <mt-tab-item id="main1">
-      <img slot="icon" >
-      工作台
-    </mt-tab-item>
-    <mt-tab-item id="main2">
-      <img slot="icon" >
-      报表
-    </mt-tab-item>
-    <mt-tab-item id="main3">
-      <img slot="icon" >
-      我的
-    </mt-tab-item>
-</mt-tabbar>
+    <rs-tabbar v-model="selected">
+      <rs-tab-item id="main1">
+        <span slot="icon" class="mui-icon mui-icon-home"></span>
+        工作台
+      </rs-tab-item>
+      <rs-tab-item id="main2">
+        <span slot="icon" class="mui-icon mui-icon-home"></span>
+        报表查询
+      </rs-tab-item>
+      <rs-tab-item id="main3">
+        <span slot="icon" class="mui-icon mui-icon-home"></span>
+        消息
+      </rs-tab-item>
+      <rs-tab-item id="main4">
+        <span slot="icon" class="mui-icon mui-icon-home"></span>
+        我的
+      </rs-tab-item>
+    </rs-tabbar>
   </div>
 </template>
 <script>
-import {mapGetters} from "./store"
+import { mapGetters } from "./store";
 //import {mapGetters} from 'vuex'
 export default {
   data() {
@@ -30,12 +33,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("main",['title','title2'])
-    ,
-    ...mapGetters("main",['title','title2'])
+    ...mapGetters("main", ["title", "title2"]),
+    ...mapGetters("main", ["title", "title2"])
   },
-  methods:{
-  },
+  methods: {},
   watch: {
     selected(curVal, oldVal) {
       if (curVal !== oldVal) {

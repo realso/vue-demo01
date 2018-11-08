@@ -1,13 +1,15 @@
 <template>
-  <div class="page-loadmore">
-    <mt-header :title="TITLE">
-      <mt-button slot="left" icon="back" @click="$router.goBack()">返回</mt-button>
-    </mt-header>
-    <div class="view">
-      <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
-        <div style="margin-right: 52px;">
-          <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
-        </div>
+  <div class="hello">
+    <rs-header title="我是标题" color="primary">
+      <a slot="left" @click="$router.goBack()" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <div slot="right">
+        <rs-button link=true>编辑</rs-button>
+        <rs-button link=true>提交</rs-button>
+      </div>
+    </rs-header>
+    <div class="mui-content">
+      <div>
+        <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
         <input type="button" baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
       </div>
       <div class="page-loadmore-wrapper">
@@ -50,14 +52,19 @@ export default {
     doQuery: function() {
       this.topStatus = "loading";
       let EMPIDX = this.$route.query.EMPIDX;
-      if(EMPIDX.length==0){
+      if (EMPIDX.length == 0) {
         EMPIDX.push(-1);
       }
       db.open({
         modalName: "TBS_EMP",
-        where: "[EMPNAME] LIKE '%" + this.searchInput + "%' AND [EMPID] NOT IN("+EMPIDX+")",
+        where:
+          "[EMPNAME] LIKE '%" +
+          this.searchInput +
+          "%' AND [EMPID] NOT IN(" +
+          EMPIDX +
+          ")",
         orderBy: "[EMPCODE]",
-        pageSize: 15,
+        pageSize: 25,
         pageIndex: 1
       }).then(data => {
         this.list = data.data.items;

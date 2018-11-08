@@ -4,18 +4,21 @@ import { DataTable } from "@/store/dbx/DataTable";
 import { getAddData, saveData, openData } from "../service";
 
 const Constants = {
-    "STORE_NAME": "feedback-add"
+    "STORE_NAME": "feedback-add",
+    "F_INITDATA": "initData",
+    "P_MAIN": "main",
+    "P_DTS": "dts",
 }
 const state = {
     params: { ACTION: "", SNODEID: "", FDBKTYPEID: "" },
     dt: {
-        "main": new DataTable("main", "TMH_FDBK_M"),
+        [Constants.P_MAIN]: new DataTable(Constants.P_MAIN, "TMH_FDBK_M"),
         "dts": new DataTable("dts", "TMH_FDBKDTS_M"),
         "imgdts": new DataTable("imgdts", "TBS_VISITIMG")
     }
 }
 const mutations = {
-    "initData": function(state) {
+    [Constants.F_INITDATA]: function(state) {
         this.dt["main"].data = {};
     },
     "setValue": function(state, { path, field, value, idx }) {
