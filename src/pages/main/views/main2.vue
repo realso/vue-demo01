@@ -3,10 +3,10 @@
   <rs-header title="报表查询"></rs-header>
   <div class="mui-content">
       <div v-for="item in list" :key="item.id">
-        <div class="rs-title">{{item.title}}</div>
+        <h5 class="rs-title">{{item.title}}</h5>
         <rs-list size="15">
         <rs-list-item v-for="item1 in item.list" :path="item1.path" isright=true :key="item1.id">
-            {{item1.name}}
+            <i :class="item1.icon"></i> {{item1.name}}
         </rs-list-item>
         </rs-list>
       </div>
