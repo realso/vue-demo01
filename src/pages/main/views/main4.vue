@@ -1,7 +1,10 @@
 <template>
-    <div>
-        main.4
-    </div>
+  <div class="rs-flex" style="padding-top:88px">
+    <rs-header title="我的"></rs-header>
+    <div class="mui-content">
+        我的
+    </div>  
+   </div>
 </template>
 <script>
 export default {
