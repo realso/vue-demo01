@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div style="height:100%">
       <transition :name="transitionName">
         <keep-alive>
           <router-view v-if="$route.meta.keepAlive">
@@ -39,6 +39,9 @@ export default {
 };
 </script>
 <style>
+#app{
+  height: 100%
+}
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,

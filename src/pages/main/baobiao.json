@@ -1,0 +1,36 @@
+[
+  {
+    "title": "反馈",
+    "list": [
+      {
+        "path": "/feedback.2",
+        "name": "反馈记录",
+        "icon": "rs-font rs-wenti2 c-icon-blue",
+        "pcode": "feedback-list",
+        "isshow": true,
+        "isfixed": true
+      }
+    ]
+  },
+  {
+    "title": "活动",
+    "list": [
+      {
+        "path": "/huodong",
+        "name": "活动",
+        "icon": "rs-font rs-huodong c-icon-green",
+        "pcode": "hongd-hd-new",
+        "isshow": true,
+        "isfixed": true
+      },
+      {
+        "path": "/huodongdudao",
+        "name": "活动督导",
+        "icon": "rs-font rs-huodongdudao c-icon-red",
+        "pcode": "hongd-dd-new",
+        "isshow": true,
+        "isfixed": true
+      }
+    ]
+  }    
+]

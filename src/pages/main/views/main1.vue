@@ -1,31 +1,49 @@
 <template>
-    <div>
-        <div class="rs-position-re ios7mt0">
-    	<img src="@/assets/banner-2.jpg" style="width:100%">
-    	<div class="rs-tips-index">
-    		<div class="rs-tips-index1">
-	    		<div class="rs-tips-time"></div>
-	    		<div class="rs-tips-week"></div>
-	    	</div>
-    	</div>
-    </div>
-      <div>
-          通知
-      </div>  
-      <ul class="mui-table-view mui-grid-view mui-grid-9">
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-				    <router-link tag="a" to="/feedback.2"><span class="mui-icon mui-icon-home"></span>
-		                    <div class="mui-media-body">反馈</div></router-link>
-		                    </li>
-		           <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-more"></span>
-		                    <div class="mui-media-body">more</div></a></li>
-		        </ul>
-    </div>
+	<div class="rs-flex">
+		<div class="rs-position-re ios7mt0">
+			<img src="@/assets/img/banner-2.jpg" style="width:100%">
+			<div class="rs-tips-index">
+				<div class="rs-tips-index1"></div>
+				<div class="rs-tips-time"></div>
+				<div class="rs-tips-week"></div>
+			</div>
+	  </div>
+		<ul class="mui-table-view bk-fff rs-padding-10">
+			<li class="mui-table-view-cell f14">
+				<div class="f14">
+					<span class="rs-font rs-wangdiandongtai c-active" ></span>
+					重要提醒！
+				</div>
+				<p class="f12">核心要素，陈列，门头务必认真填写！感谢支持！</p>
+			</li>
+		</ul>
+		<div class="mui-content">
+			<rs-grid border=false type="white">
+				<rs-grid-item v-for="item in navs" :path="item.path" :key="item.id">
+					<span slot="icon" class="f24" :class="item.icon"></span>
+					<span class="f12">{{item.name}}</span>
+				</rs-grid-item>
+				<rs-grid-item path="#">
+					<span slot="icon" class="f24 mui-icon mui-icon-more"></span>
+					<span class="f12">more</span>
+				</rs-grid-item>
+			</rs-grid>
+		</div>				
+	</div>
 </template>
 <script>
+import navs from '../nav.json'
+
 export default {
-  name: "main1"
-};
+  name: "main1",
+  data () {
+	  return {
+		  navs: []
+	  }
+  },
+  created() {
+	 this.navs = navs
+  }
+}
 </script>
 
