@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%">
     <transition>
       <keep-alive>
         <component v-show="showView==view.name" v-for="view in views" :is="view.type" :key="view.name" :ref="view.name" :ref-store="view.refStore" :TITLE="view.TITLE"></component>

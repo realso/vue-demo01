@@ -7,11 +7,11 @@
         <rs-button link=true>提交</rs-button>
       </div>
     </rs-header>
+    <div>
+      <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
+      <input type="button" baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
+    </div>
     <div class="mui-content">
-      <div>
-        <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
-        <input type="button" baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
-      </div>
       <div class="page-loadmore-wrapper">
         <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
           <ul>
