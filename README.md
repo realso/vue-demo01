@@ -22,5 +22,33 @@ npm run unit
 
 # run all tests
 npm test
+环境
 
 
+src
+    api
+    --接口
+    assets
+    --静态文件
+    components
+    --符合组件
+    pages
+    --模块
+    router
+    --路由配置
+    store
+    --公共数据
+    utils
+    --工具代码
+    App.vue 入口
+    main.js 入口
+
+步骤
+页面基本元素
+编辑页面
+router
+store
+index.vue
+views
+
+   
