@@ -9,13 +9,13 @@
     </div>
     <div class="mui-content">
       <div class="page-loadmore-wrapper">
-        <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
-          <rs-list>
-            <rs-list-item isright="true" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
+        <rs-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
+          <ul class="mui-table-view">
+            <li class="mui-table-view-cell" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
               {{item.EMPCODE}}{{item["EMPNAME"]}}
-            </rs-list-item>
-          </rs-list>  
-        </mt-loadmore>
+            </li>
+          </ul>
+        </rs-loadmore>
       </div>
     </div>
   </div>
