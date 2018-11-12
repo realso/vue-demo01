@@ -1,24 +1,20 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="padding-top:44px">
     <rs-header title="我是标题" color="primary">
       <a slot="left" @click="$router.goBack()" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
-      <div slot="right">
-        <rs-button link=true>编辑</rs-button>
-        <rs-button link=true>提交</rs-button>
-      </div>
     </rs-header>
-    <div>
+    <div class="mui-input-row mui-search r-search">
+      <rs-button link="true" @click="doQuery" class="mui-pull-right">查询</rs-button>
       <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
-      <input type="button" baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
     </div>
     <div class="mui-content">
       <div class="page-loadmore-wrapper">
         <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
-          <ul>
-            <li class="item" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
+          <rs-list>
+            <rs-list-item isright="true" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
               {{item.EMPCODE}}{{item["EMPNAME"]}}
-            </li>
-          </ul>
+            </rs-list-item>
+          </rs-list>  
         </mt-loadmore>
       </div>
     </div>
@@ -90,12 +86,7 @@ export default {
 };
 </script>
 <style scoped>
-.view {
-  margin-top: 60px;
-}
-.item {
-  line-height: 32px;
-  text-align: left;
-}
+.r-search input.mui-input-clear{background: #fff;  text-align: left; padding: 0 65px 0 15px; border: 5px solid #f8f8f9; border-radius: 0; height: 35px; margin-bottom: 0;}
+.r-search input.mui-pull-right{ background: #f8f8f9; color: #58cffa; position: absolute; top: 0; height: 37px; right: 0;}
 </style>
 
