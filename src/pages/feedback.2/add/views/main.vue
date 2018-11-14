@@ -1,5 +1,5 @@
 <template>
-    <div class="hello">
+    <div class="mui-layout mui-layout-top">
         <rs-header :title="TITLE" color="primary">
         <router-link to="/" slot="left" class="mui-icon mui-icon-left-nav mui-pull-left"></router-link>
         <div slot="right">

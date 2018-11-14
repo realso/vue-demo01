@@ -1,5 +1,5 @@
 <template>
-  <div class="hello rs-layout-2">
+  <div class="mui-layout mui-layout-bottomtop">
     <keep-alive>
       <router-view ref="view" />
     </keep-alive>

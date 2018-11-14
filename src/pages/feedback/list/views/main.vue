@@ -1,9 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="mui-layout mui-layout-top">
     <rs-header :title="TITLE">
       <router-link slot="right" tag="a" to="/feedback/add/main?ACTION=ADD">新增</router-link>
     </rs-header>
-    <div class="view rs-flex">
+    <div class="view">
       <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
         <div style="margin-right: 52px;">
           <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
@@ -16,7 +16,7 @@
         <mt-tab-item :id="STATE.已关闭">已关闭</mt-tab-item>
         <mt-tab-item :id="4">筛选</mt-tab-item>
       </mt-navbar>
-      <div class="mui-content">
+      <div class="page-loadmore-wrapper">
         <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
           <ul>
             <li class="item mui-table-view-cell mui-media f14 line-24 c-999" v-for="item in list" :key="item.id" @click="moveTo(item.BILLID)" v-hold="hold">
