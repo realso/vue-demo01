@@ -1,5 +1,5 @@
 <template>
-<div class="rs-flex" style="padding-top:88px">
+<div class="rs-flex">
   <rs-header title="报表查询"></rs-header>
   <div class="mui-content">
       <div v-for="item in list" :key="item.id">

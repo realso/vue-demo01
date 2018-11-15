@@ -1,5 +1,5 @@
 <template>
-  <div class="page-loadmore">
+  <div class="mui-layout mui-layout-top">
     <rs-header :title="TITLE">
       <router-link slot="right" tag="a" to="/feedback/add/main?ACTION=ADD">新增</router-link>
     </rs-header>

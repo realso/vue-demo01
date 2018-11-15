@@ -8,15 +8,10 @@
 				<div class="rs-tips-week"></div>
 			</div>
 	  </div>
-		<ul class="mui-table-view bk-fff rs-padding-10">
-			<li class="mui-table-view-cell f14">
-				<div class="f14">
-					<span class="rs-font rs-wangdiandongtai c-active" ></span>
-					重要提醒！
-				</div>
-				<p class="f12">核心要素，陈列，门头务必认真填写！感谢支持！</p>
-			</li>
-		</ul>
+		<rs-tip>
+			<span slot="title"><span class="rs-font rs-wangdiandongtai mr5 c-active"></span>不忘初心</span>
+			<div class="mui-text-center">不忘初心,牢记使命！</div>
+		</rs-tip>
 		<div class="mui-content">
 			<rs-grid border=false type="white">
 				<rs-grid-item v-for="item in navs" :path="item.path" :key="item.id">
