@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="padding-top:44px">
+  <div class="mui-layout mui-layout-top">
     <rs-header title="我是标题" color="primary">
       <a slot="left" @click="$router.goBack()" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
     </rs-header>

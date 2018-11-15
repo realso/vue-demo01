@@ -1,5 +1,5 @@
 <template>
-    <div class="page-loadmore">
+    <div class="mui-layout mui-layout-top">
     <rs-header :title="TITLE">
     </rs-header>
     <div class="view">
