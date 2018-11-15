@@ -7,7 +7,11 @@ import FeedbackRouter from "@/pages/feedback/router"
 import FeedbackRouter1 from "@/pages/feedback.1/router"
 import FeedbackRouter2 from "@/pages/feedback.2/router"
 Vue.use(Router);
-let routes = [];
+let routes = [{
+    path: '/404',
+    name: '404',
+    component: r => require.ensure([], () => r(require('@/pages/login')), 'login')
+}];
 routes = routes.concat(LoginRouter);
 routes.push(FeedbackRouter);
 //routes = routes.concat(FeedbackRouter1);
@@ -19,6 +23,11 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+    if (!to.matched || to.matched.length == 0) {
+
+        next({ path: "/404" });
+        return;
+    }
     if (["login", "404", "503"].indexOf(to.name) != -1 || Store.getters["user/isLogin"]) {
         next();
     } else {

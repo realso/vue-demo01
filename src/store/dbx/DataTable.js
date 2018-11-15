@@ -1,3 +1,6 @@
+/**
+ * 数据管理对象
+ */
 class DataTable {
     constructor(path, scm) {
         this.path = path;
@@ -14,9 +17,14 @@ class DataTable {
         }
     }
 
+    /**
+     * 初始化
+     * @param {初始化数据} data 
+     */
     initData(data) {
         this.idx = 0;
         this.data = [];
+        data = data || [];
         this._changeInfo = {
             _rawData: [],
             _rawIdxData: {},
@@ -33,11 +41,29 @@ class DataTable {
         this._changeInfo._rawData = data;
     }
 
+    /**
+     * 设置数据
+     * @param {数据} data 
+     * @param {是否追加} isAdd 
+     */
+    setData(data, isAdd) {
+        if (!isAdd) {
+            this.initData();
+        }
+        data.map(item => {
+            item["_idx_"] = this.idx++;
+            item["_type_"] = "old";
+            this._changeInfo._rawIdxData[item["_idx_"]] = item;
+            this.data.push(Object.assign({}, this.dataObj, item));
+        });
+        this._changeInfo._rawData = this._changeInfo._rawData.concat(data);
+    }
+
     getValue(field, idx) {
         let ret = "";
         idx = idx || 0;
         if (idx > this.data.length) {
-            throw new Error("DataTable.getValue太长了");
+            throw new Error("DataTable.getValue idx太长了");
         }
         if (this.data.length > 0) {
             ret = this.data[idx][field];
@@ -98,7 +124,7 @@ class DataTable {
         return this.data.length;
     }
 
-    bindField(aFields) {
+    bindField(aFields, where, order) {
         aFields = aFields || [];
         let ret = {};
         let _this = this;
@@ -126,7 +152,34 @@ class DataTable {
         return ret;
     }
 
-    getXML() {
+    /**
+     * 复制数据
+     * @param {来源表格} fromTable 
+     * @param {isAdd:是否添加,exFields:剔除字段} param1 
+     */
+    copyTable(fromTable, { isAdd, exFields }) {
+        const fieldAll = fromTable.getFields();
+        const data = fromTable.getData();
+        exFields = exFields || [];
+        modifyFields = modifyFields || [];
+        if (!isAdd) {
+            this.initData();
+        }
+        Array.forEach(data, item => {
+            let titem = {};
+            Array.forEach(fieldAll, field => {
+                if (exFields.indexOf(field) == -1) {
+                    titem[field] = item[field];
+                }
+            })
+            this.add(titem);
+        });
+    }
+
+
+
+
+    getFields() {
         let fieldAll = [];
         Array.forEach(this.data, function(item) {
             fieldAll = fieldAll.concat(Object.keys(item));
@@ -135,6 +188,17 @@ class DataTable {
             fieldAll = fieldAll.concat(Object.keys(item));
         })
         fieldAll = Array.from(new Set(fieldAll));
+        return fieldAll;
+    }
+
+    getData(where, order) {
+        where = where || "";
+        order = order || "";
+        return this.data;
+    }
+
+    getXML() {
+        let fieldAll = this.getFields();
         let strSave = '<?xml version="1.0" encoding="UTF-8"?>';
         let newitems = "";
         let modifyitems = "";
