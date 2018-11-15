@@ -2,24 +2,22 @@
     <div class="mui-layout mui-layout-top">
     <rs-header :title="TITLE">
     </rs-header>
-    <div class="view">
-        <div class="mui-input-row mui-search r-search bk-f2 line-33 ">
-		<div style="margin-right: 52px;">
-		<input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
-		</div>
-		<input type="button"  baseclass="mui-pull-right border-none" @click="doQuery" value="查询">
-	</div>
-    <div class="page-loadmore-wrapper">
-    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded"  :top-status.sync="topStatus" ref="loadmore">
-    <ul>
-        <li class="item" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
-           {{item.EMPCODE}}{{item["EMPNAME"]}}
-        </li>
-    </ul>
-    </mt-loadmore>   
+    <div class="mui-input-row mui-search r-search">
+      <rs-button link="true" @click="doQuery" class="mui-pull-right">查询</rs-button>
+      <input type="search" class="mui-input-clear" v-model="searchInput" style="padding: 0 0 0 15px;" placeholder="输入">
     </div>
+    <div class="mui-content">
+      <div class="page-loadmore-wrapper">
+        <rs-loadmore :top-method="loadTop" :bottom-method="loadBottom" :auto-fill=false :bottom-all-loaded="allLoaded" :top-status.sync="topStatus" ref="loadmore">
+          <ul class="mui-table-view">
+            <li class="mui-table-view-cell" v-for="item in list" :key="item.id" @click="selectEmp(item)" v-hold="hold">
+              {{item.EMPCODE}}{{item["EMPNAME"]}}
+            </li>
+          </ul>
+        </rs-loadmore>
+      </div>
     </div>
-    </div>
+  </div>
 </template>
 <script>
 import db from "@/api/db";
@@ -83,12 +81,14 @@ export default {
 };
 </script>
 <style scoped>
-.view {
-  margin-top: 60px;
-}
-.item {
-  line-height: 32px;
-  text-align: left;
+.r-search input.mui-input-clear{background: #fff;  text-align: left; padding: 0 65px 0 15px; border: 5px solid #f8f8f9; border-radius: 0; height: 35px; margin-bottom: 0;}
+.r-search input.mui-pull-right{ background: #f8f8f9; color: #58cffa; position: absolute; top: 0; height: 37px; right: 0;}
+input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
+.mui-btn-primary:enabled:active,
+.mui-btn-primary.mui-active:enabled, .mui-btn-blue:enabled:active, .mui-btn-blue.mui-active:enabled
+{
+    border: none;
+    background-color: #f8f8f9;
 }
 </style>
 
