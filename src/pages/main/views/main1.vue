@@ -1,5 +1,5 @@
 <template>
-	<div class="rs-flex">
+	<div class="mui-layout mui-layout-bottom">
 		<div class="rs-position-re ios7mt0">
 			<img src="@/assets/img/banner-2.jpg" style="width:100%">
 			<div class="rs-tips-index">

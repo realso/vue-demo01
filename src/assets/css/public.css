@@ -1,5 +1,5 @@
 /*flex*/
-.rs-flex{display:flex;display:-webkit-flex;margin:0 auto; flex-direction:column; width: 100%}
+.rs-flex{display:flex;display:-webkit-flex;margin:0 auto; flex-direction:column; width: 100%;height: 100%}
 .rs-flex-item{flex:1;}
 /*颜色*/
 .c-icon-orange{ color: #ffb359}

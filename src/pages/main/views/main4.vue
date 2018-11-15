@@ -1,5 +1,5 @@
 <template>
-  <div class="rs-flex">
+  <div class="mui-layout mui-layout-bottomtop">
     <rs-header title="我的"></rs-header>
     <div class="mui-content">
         我的
